@@ -1,0 +1,33 @@
+.label {
+    -fx-background-color: black;
+    -fx-text-fill: rgba(255, 255, 255, 0.8);
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+}
+
+.button {
+    -fx-background-color: white;
+    -fx-text-fill: rgba(0, 0, 0, 0.9);
+    -fx-min-width: 160;
+    -fx-min-height: 54;
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 10, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: #e55800;
+    -fx-text-fill: rgba(256, 256, 256, 0.9);
+}
+
+.backButton {
+    -fx-background-color: white;
+    -fx-text-fill: rgba(0, 0, 0, 0.9);
+    -fx-min-width: 80;
+    -fx-min-height: 48;
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 10, 0, 0, 2);
+}

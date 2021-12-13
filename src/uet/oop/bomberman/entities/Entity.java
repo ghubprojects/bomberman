@@ -1,30 +1,77 @@
 package uet.oop.bomberman.entities;
 
-import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import uet.oop.bomberman.graphics.Sprite;
 
 public abstract class Entity {
-    //Tọa độ X tính từ góc trái trên trong Canvas
-    protected int x;
+    protected int _x, _y;
+    protected int _xTile, _yTile;
+    protected Image _img;
+    protected BoundingBox _bbox;
+    protected boolean removed;
 
-    //Tọa độ Y tính từ góc trái trên trong Canvas
-    protected int y;
+    public Entity(int x, int y, Image image) {
+        _x = x;
+        _y = y;
 
-    protected Image img;
+        _xTile = x / Sprite.TILE_SIZE;
+        _yTile = y / Sprite.TILE_SIZE;
 
-    //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
-    public Entity( int xUnit, int yUnit, Image img) {
-        this.x = xUnit * Sprite.SCALED_SIZE;
-        this.y = yUnit * Sprite.SCALED_SIZE;
-        this.img = img;
+        _img = image;
+        removed = false;
     }
 
-    public void render(GraphicsContext gc) {
-        gc.drawImage(img, x, y);
-    }
+    /*
+	|--------------------------------------------------------------------------
+	| Update and Render
+	|--------------------------------------------------------------------------
+	 */
     public abstract void update();
+
+    public void render(GraphicsContext graphicsContext) {
+        graphicsContext.drawImage(_img, _x, _y);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Collision
+    |--------------------------------------------------------------------------
+     */
+    public BoundingBox getBBox() {
+        return _bbox;
+    }
+
+    public boolean collide(Entity other) {
+        return _bbox.collideBbox(other.getBBox());
+    }
+
+    /*
+	|--------------------------------------------------------------------------
+	| Getters and Setters
+	|--------------------------------------------------------------------------
+	 */
+    public int getX() {
+        return _x;
+    }
+
+    public int getY() {
+        return _y;
+    }
+
+    public int getXTile() {
+        return _xTile;
+    }
+
+    public int getYTile() {
+        return _yTile;
+    }
+
+    public boolean isRemoved() {
+        return removed;
+    }
+
+    public void remove() {
+        removed = true;
+    }
 }
